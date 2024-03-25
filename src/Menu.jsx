@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Ajouterchef from './Ajouterchef';
+
 
 export default class Menu extends Component {
     render() {
         return (
+           
             <div>
                 <aside className="main-sidebar sidebar-dark-primary elevation-4">
                     {/* Brand Logo */}
@@ -41,30 +45,30 @@ export default class Menu extends Component {
                                 {/* Add icons to the links using the .nav-icon class */}
                                 {/* Dashboard */}
                                 <li className="nav-item">
-                                    <a href="#" className="nav-link">
+                                    <a href="chefchantier" className="nav-link">
                                         <i className="nav-icon fas fa-tachometer-alt"></i>
                                         <p>
-                                            Dashboard
+                                            chefchantier
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
                                     <ul className="nav nav-treeview">
                                         <li className="nav-item">
-                                            <a href="./index.html" className="nav-link">
+                                            <a href="ajouterchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>Dashboard v1</p>
+                                                <p>ajouterchef</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a href="./index2.html" className="nav-link">
+                                            <a href="surrprimerchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>Dashboard v2</p>
+                                                <p>surrprimerchef</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a href="./index3.html" className="nav-link">
+                                            <a href="modifierchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>Dashboard v3</p>
+                                                <p>modifierchef</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -117,7 +121,13 @@ export default class Menu extends Component {
                     </div>
                     {/* /.sidebar */}
                 </aside>
+                {/* <Routes>
+                        <Route path="/ajouterchef" element={<Ajouterchef />} />
+                        </Routes> */}
+                        
             </div>
+            
         );
     }
 }
+
