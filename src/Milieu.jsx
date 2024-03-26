@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Ajouterchef from './Ajouterchef';
+import Surrprimerchef from './Surrprimerchef';
+import Modifierchef from './Modifierchef';
+import Addservice from './Addservice';
+import Reservation from './Reservation';
+import Accepter from './Accepter';
 export default class Body extends Component {
   render() {
     return (
@@ -113,6 +118,11 @@ export default class Body extends Component {
                   <Router>
                   <Routes>
                         <Route path="/ajouterchef" element={<Ajouterchef />} />
+                        <Route path="/surrprimerchef" element={<Surrprimerchef />} />
+                        <Route path="/modifierchef" element={<Modifierchef />} />
+                        <Route path="/ajouterservice" element={<Addservice />} />
+                        <Route path="/consulter" element={<Reservation />} />
+                        <Route path="/gerer" element={<Accepter />} />
                         </Routes>
                  </Router>
                   <div className="chart tab-pane active" id="revenue-chart" style={{position: 'relative', height: 300}}>

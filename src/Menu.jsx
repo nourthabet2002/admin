@@ -71,6 +71,56 @@ export default class Menu extends Component {
                                                 <p>modifierchef</p>
                                             </a>
                                         </li>
+                                        <li className="nav-item">
+                                            <a href="affecterchef" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>affecterchef</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li className="nav-item">
+                                    <a href="chefchantier" className="nav-link">
+                                        <i className="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            service
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul className="nav nav-treeview">
+                                        <li className="nav-item">
+                                            <a href="ajouterservice" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>ajouterservvice</p>
+                                            </a>
+                                        </li>
+                                        
+                                        
+                                    </ul>
+                                </li>
+                                <li className="nav-item">
+                                    <a href="chefchantier" className="nav-link">
+                                        <i className="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            reservation
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul className="nav nav-treeview">
+                                        <li className="nav-item">
+                                            <a href="gerer" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>gerer</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="consulter" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>consulter</p>
+                                            </a>
+                                        </li>
+                                        
+                                        
                                     </ul>
                                 </li>
                                 {/* Widgets */}

@@ -4,7 +4,8 @@ import axios from 'axios';
 function UpdateChef() {
   const [chefs, setChefs] = useState([]);
   const [selectedChef, setSelectedChef] = useState('');
-  const [updatedName, setUpdatedName] = useState('');
+  const [updatedChefData, setUpdatedChefData] = useState({});
+  const [selectedChefData, setSelectedChefData] = useState(null);
 
   useEffect(() => {
     fetchChefs();
@@ -19,37 +20,88 @@ function UpdateChef() {
     }
   };
 
+  const handleSelectChef = (chefName) => {
+    const chef = chefs.find(chef => chef.nom === chefName);
+    setSelectedChefData(chef);
+    setSelectedChef(chefName);
+  };
+
   const handleUpdate = async () => {
-    if (!selectedChef || !updatedName) {
-      console.error('Chef or updated name not provided');
+    if (!selectedChefData || Object.keys(updatedChefData).length === 0) {
+      console.error('Chef or updated information not provided');
       return;
     }
     try {
-      const response = await axios.put(`http://localhost:7000/chef/${selectedChef}`, { name: updatedName });
+      const response = await axios.put(`http://localhost:7000/chef/${selectedChefData.nom}`, updatedChefData);
       console.log('Chef updated:', response.data);
       fetchChefs(); // Refresh the list after update
       setSelectedChef(''); // Reset selected chef
-      setUpdatedName(''); // Reset updated name
+      setUpdatedChefData({}); // Reset updated chef data
+      setSelectedChefData(null); // Reset selected chef data
     } catch (error) {
       console.error('Error updating chef:', error);
     }
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUpdatedChefData({ ...updatedChefData, [name]: value });
+  };
+
   return (
     <div>
       <h2>Update chef</h2>
-      <select value={selectedChef} onChange={(e) => setSelectedChef(e.target.value)}>
-        <option value="">Select chef to update</option>
-        {chefs.map((chef) => (
-          <option key={chef.nom} value={chef.nom}>
-            {chef.nom}
-          </option>
-        ))}
-      </select>
-      <input type="text" value={updatedName} onChange={(e) => setUpdatedName(e.target.value)} />
-      <button onClick={handleUpdate}>Update chef</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Chef Name</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody>
+          {chefs.map(chef => (
+            <tr key={chef.nom}>
+              <td>{chef.nom}</td>
+              <td>
+                <button onClick={() => handleSelectChef(chef.nom)}>Select</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {selectedChefData && (
+        <div>
+          <h3>Selected Chef Information</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(selectedChefData).map(([field, value]) => (
+                <tr key={field}>
+                  <td>{field}</td>
+                  <td>
+                    <input
+                      type="text"
+                      name={field}
+                      value={updatedChefData[field] || value}
+                      onChange={handleInputChange}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={handleUpdate}>Update chef</button>
+        </div>
+      )}
     </div>
   );
 }
 
 export default UpdateChef;
+
+
