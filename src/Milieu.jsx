@@ -3,9 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Ajouterchef from './Ajouterchef';
 import Surrprimerchef from './Surrprimerchef';
 import Modifierchef from './Modifierchef';
-import Addservice from './Addservice';
+import Addscategorie from './Addcategorie';
 import Reservation from './Reservation';
 import Accepter from './Accepter';
+import Surrprimerservice from './Surrprimerservice';
+import Consulterclient from './Consulterclient';
+import Surrprimerclient from './Surrprimerclient';
+import AddcategorieForm from './Addcategorie';
+import AddServiceForm from './Addservice';
 export default class Body extends Component {
   render() {
     return (
@@ -120,9 +125,13 @@ export default class Body extends Component {
                         <Route path="/ajouterchef" element={<Ajouterchef />} />
                         <Route path="/surrprimerchef" element={<Surrprimerchef />} />
                         <Route path="/modifierchef" element={<Modifierchef />} />
-                        <Route path="/ajouterservice" element={<Addservice />} />
+                        <Route path="/ajoutercategorie" element={<AddcategorieForm />} />
                         <Route path="/consulter" element={<Reservation />} />
                         <Route path="/gerer" element={<Accepter />} />
+                        <Route path="/surrprimerservice" element={<Surrprimerservice />} />
+                        <Route path="/consulterclient" element={<Consulterclient/>} />
+                        <Route path="/surrprimerclient" element={<Surrprimerclient/>} />
+                        <Route path="/ajouterservice" element={<AddServiceForm />} />
                         </Routes>
                  </Router>
                   <div className="chart tab-pane active" id="revenue-chart" style={{position: 'relative', height: 300}}>

@@ -1,63 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddServiceForm = () => {
-  const [services, setServices] = useState([]);
-  const [selectedService, setSelectedService] = useState('');
-  const [category, setCategory] = useState('');
-  const [error, setError] = useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Fetch services from the server when the component mounts
-    const fetchServices = async () => {
-      try {
-        const response = await axios.get('http://localhost:7000/service');
-        setServices(response.data); // Assuming the response is an array of service objects with properties like _id and name
-      } catch (error) {
-        console.error('Failed to fetch services:', error);
-        setError('Failed to fetch services');
-      }
-    };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
 
-    fetchServices();
-  }, []);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const addService = async () => {
     try {
-      const apiUrl = "http://localhost:7000/service/add";
-      const response = await axios.post(apiUrl, { name: selectedService, category });
-      console.log("Service added successfully:", response.data);
-      // Reset selectedService and category after adding the service
-      setSelectedService('');
-      setCategory('');
-      // Optionally, fetch services again to update the list
-      // fetchServices();
+      // Make POST request to backend API endpoint on port 7000
+      const response = await axios.post('http://localhost:7000/service/add', { name });
+
+      // Handle successful response
+      console.log('Service added successfully:', response.data);
+      
+      // Optionally, you can reset the form after successful submission
+      setName('');
+      setError(null);
     } catch (error) {
-      console.error("Failed to add service:", error);
+      // Handle error
+      console.error('Error adding service:', error);
       setError('Failed to add service');
     }
   };
 
   return (
-    <div>
+    <div className="add-service-form">
       <h2>Add Service</h2>
-      {error && <p>{error}</p>}
-      <label>
-        Select Service:
-        <select value={selectedService} onChange={(e) => setSelectedService(e.target.value)}>
-          <option value="">Select a service</option>
-          {services.map(service => (
-            <option key={service._id} value={service.name}>{service.name}</option>
-          ))}
-        </select>
-      </label>
-      <br />
-      <label>
-        Category:
-        <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
-      </label>
-      <br />
-      <button onClick={addService}>Add Service</button>
+      {error && <div className="error">{error}</div>}
+      <form onSubmit={handleSubmit} className="service-form">
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" className="form-control" value={name} onChange={handleNameChange} />
+        </div>
+        <button type="submit" className="btn btn-primary">Add Service</button>
+      </form>
     </div>
   );
 };
