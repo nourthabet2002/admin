@@ -28,38 +28,43 @@ function DeleteChef() {
   };
 
   return (
-    <div>
-      <h2>Delete chef</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>nom</th>
-            <th>prénom</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Numéro de téléphone</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {chefs.map((chef) => (
-            <tr key={chef.id}>
-              <td>{chef.id}</td>
-              <td>{chef.nom}</td>
-              <td>{chef.prenom}</td>
-              <td>{chef.email}</td>
-              <td>{chef.password}</td>
-              <td>{chef.numtel}</td>
-              <td>
-                <button onClick={() => handleDelete(chef.nom)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <h2>Surrprimer chef</h2>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Numéro de téléphone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {chefs.map((chef) => (
+                <tr key={chef.id}>
+                  <td>{chef.id}</td>
+                  <td>{chef.nom}</td>
+                  <td>{chef.prénom}</td>
+                  <td>{chef.email}</td>
+                  <td>{chef.password}</td>
+                  <td>{chef.numtel}</td>
+                  <td>
+                    <button onClick={() => handleDelete(chef.nom)} className="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default DeleteChef;
+

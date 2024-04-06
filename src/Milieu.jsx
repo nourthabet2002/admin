@@ -11,6 +11,12 @@ import Consulterclient from './Consulterclient';
 import Surrprimerclient from './Surrprimerclient';
 import AddcategorieForm from './Addcategorie';
 import AddServiceForm from './Addservice';
+import Surrprimercategorie from'./Surrprimercategorie';
+import ModifierCategorie from './Modifiercategorie';
+import Modifierservice from './Modifierservice';
+import Ajouteremploye from './Ajouteremploye';
+import Modifier from './Modifier';
+import Surrprimeremploye from './Surrprimeremploye';
 export default class Body extends Component {
   render() {
     return (
@@ -132,6 +138,12 @@ export default class Body extends Component {
                         <Route path="/consulterclient" element={<Consulterclient/>} />
                         <Route path="/surrprimerclient" element={<Surrprimerclient/>} />
                         <Route path="/ajouterservice" element={<AddServiceForm />} />
+                        <Route path="/surrprimercategorie" element={<Surrprimercategorie />} />
+                        <Route path="/modifiercategorie" element={<ModifierCategorie />} />
+                        <Route path="/modifierservice" element={<Modifierservice />} />
+                        <Route path="/ajouteremploye" element={<Ajouteremploye />} />
+                        <Route path="/modifieremploye" element={<Modifier />} />
+                        <Route path="/surrprimeremploye" element={<Surrprimeremploye />} />
                         </Routes>
                  </Router>
                   <div className="chart tab-pane active" id="revenue-chart" style={{position: 'relative', height: 300}}>

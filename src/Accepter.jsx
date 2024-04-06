@@ -26,7 +26,7 @@ const Accepter = () => {
   const fetchChefs = async () => {
     try {
       const response = await axios.get('http://localhost:7000/chef');
-      setChefs(response.data); // Assuming response.data is an array of chef objects with a "nom" field
+      setChefs(response.data);
     } catch (error) {
       console.error('Error fetching chefs:', error);
     }
@@ -34,23 +34,22 @@ const Accepter = () => {
 
   const handleAccept = (id) => {
     setSelectedReservationId(id);
-    setEtat(''); // Reset etat
-    setSelectedChef(''); // Reset selected chef
+    setEtat('');
+    setSelectedChef('');
   };
 
   const handleAddProject = async () => {
     try {
       const selectedReservation = reservations.find(reservation => reservation._id === selectedReservationId);
-      const { serviceName, subCategory, date, description, lieu } = selectedReservation;
+      const { date, lieu, categorieId, clientId } = selectedReservation;
       const response = await axios.post('http://localhost:7000/projet/add', {
-        serviceName,
-        subCategory,
         date,
-        description,
         lieu,
         prix: price,
         etat,
-        chefchantier: selectedChef
+        chefchantier: selectedChef,
+        categorieId,
+        clientId
       });
       console.log('Project added:', response.data);
       setPrice('');
@@ -63,32 +62,41 @@ const Accepter = () => {
     }
   };
 
+  const handleDeleteResclient = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:7000/resclient/${id}`);
+      console.log('Resclient deleted:', response.data);
+      setReservations(reservations.filter(reservation => reservation._id !== id));
+    } catch (error) {
+      console.error('Error deleting resclient:', error);
+    }
+  };
+
   return (
     <div>
       <h2>Reservations</h2>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Service Name</th>
-            <th>Subcategory</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Lieux</th>
+            <th>categorieId</th>
+            <th>clientId</th>
+            <th>date</th>
+            <th>lieu</th>
+            <th>IDreservation</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {reservations.map(reservation => (
             <tr key={reservation._id}>
-              <td>{reservation.ID}</td>
-              <td>{reservation.serviceName}</td>
-              <td>{reservation.subCategory}</td>
+              <td>{reservation.categorieId}</td>
+              <td>{reservation.clientId}</td>
               <td>{reservation.date}</td>
-              <td>{reservation.description}</td>
               <td>{reservation.lieu}</td>
+              <td>{reservation._id}</td>
               <td>
                 <button onClick={() => handleAccept(reservation._id)}>Accepter</button>
+                <button onClick={() => handleDeleteResclient(reservation._id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -122,6 +130,8 @@ const Accepter = () => {
 };
 
 export default Accepter;
+
+
 
 
 

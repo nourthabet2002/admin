@@ -49,59 +49,65 @@ function UpdateChef() {
   };
 
   return (
-    <div>
-      <h2>Update chef</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Chef Name</th>
-            <th>Select</th>
-          </tr>
-        </thead>
-        <tbody>
-          {chefs.map(chef => (
-            <tr key={chef.nom}>
-              <td>{chef.nom}</td>
-              <td>
-                <button onClick={() => handleSelectChef(chef.nom)}>Select</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {selectedChefData && (
-        <div>
-          <h3>Selected Chef Information</h3>
-          <table>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <h2>Modifier chef</h2>
+          <table className="table">
             <thead>
               <tr>
-                <th>Field</th>
-                <th>Value</th>
+                <th>Chef Name</th>
+                <th>Select</th>
               </tr>
             </thead>
             <tbody>
-              {Object.entries(selectedChefData).map(([field, value]) => (
-                <tr key={field}>
-                  <td>{field}</td>
+              {chefs.map(chef => (
+                <tr key={chef.nom}>
+                  <td>{chef.nom}</td>
                   <td>
-                    <input
-                      type="text"
-                      name={field}
-                      value={updatedChefData[field] || value}
-                      onChange={handleInputChange}
-                    />
+                    <button onClick={() => handleSelectChef(chef.nom)} className="btn btn-primary">Select</button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button onClick={handleUpdate}>Update chef</button>
+          {selectedChefData && (
+            <div>
+              <h3>Selected Chef Information</h3>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(selectedChefData).map(([field, value]) => (
+                    <tr key={field}>
+                      <td>{field}</td>
+                      <td>
+                        <input
+                          type="text"
+                          name={field}
+                          value={updatedChefData[field] || value}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button onClick={handleUpdate} className="btn btn-success">Update chef</button>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
 
 export default UpdateChef;
+
 
 

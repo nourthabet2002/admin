@@ -38,11 +38,11 @@ function ServiceComponent() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="container">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div className="container">Error: {error.message}</div>;
   }
 
   // Filter out duplicate service names
@@ -51,12 +51,12 @@ function ServiceComponent() {
   );
 
   return (
-    <div>
+    <div className="container">
       <h1>Service List</h1>
       {uniqueServices.length === 0 ? (
         <div>No services available.</div>
       ) : (
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Name</th>
@@ -68,7 +68,7 @@ function ServiceComponent() {
               <tr key={service._id}>
                 <td>{service.name}</td>
                 <td>
-                  <button onClick={() => handleDelete(service.name)}>Delete</button>
+                  <button onClick={() => handleDelete(service.name)} className="btn btn-danger">Delete</button>
                 </td>
               </tr>
             ))}
@@ -80,6 +80,7 @@ function ServiceComponent() {
 }
 
 export default ServiceComponent;
+
 
 
 

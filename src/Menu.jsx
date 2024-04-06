@@ -88,12 +88,7 @@ export default class Menu extends Component {
                                         </p>
                                     </a>
                                     <ul className="nav nav-treeview">
-                                        <li className="nav-item">
-                                            <a href="ajoutercategorie" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>ajoutercategorie</p>
-                                            </a>
-                                        </li>
+                                        
                                         <li className="nav-item">
                                             <a href="ajouterservice" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
@@ -104,6 +99,77 @@ export default class Menu extends Component {
                                             <a href="surrprimerservice" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>surrprimerservvice</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="modifierservice" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>modifierservvice</p>
+                                            </a>
+                                        </li>
+                                        
+                                        
+                                    </ul>
+                                    
+                                </li>
+                                <li className="nav-item">
+                                    <a href="chefchantier" className="nav-link">
+                                        <i className="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            employes
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul className="nav nav-treeview">
+                                        
+                                        <li className="nav-item">
+                                            <a href="ajouteremploye" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>ajouteremploye</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="surrprimeremploye" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>surrprimeremploye</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="modifieremploye" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>modifieremploye</p>
+                                            </a>
+                                        </li>
+                                        
+                                        
+                                    </ul>
+                                    
+                                </li>
+                                <li className="nav-item">
+                                    <a href="chefchantier" className="nav-link">
+                                        <i className="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            categorie
+                                            <i className="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul className="nav nav-treeview">
+                                        <li className="nav-item">
+                                            <a href="ajoutercategorie" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>ajoutercategorie</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="surrprimercategorie" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>surrpprimercategorie</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="modifiercategorie" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>modifiercategorie</p>
                                             </a>
                                         </li>
                                         
