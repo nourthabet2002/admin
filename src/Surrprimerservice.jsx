@@ -25,13 +25,22 @@ function ServiceComponent() {
 
   const handleDelete = async (serviceName) => {
     try {
-      // Delete service using its name
+      // Find the service in the list of services
+      const serviceToDelete = services.find(service => service.name === serviceName);
+      
+      // If serviceToDelete is not found, return
+      if (!serviceToDelete) {
+        console.error('Service not found:', serviceName);
+        return;
+      }
+
+      // Delete service and associated categories
       await axios.delete(`http://localhost:7000/service/${serviceName}`);
-      
+
       // Update state to remove the deleted service
-      setServices(services.filter(service => service.name !== serviceName));
-      
-      console.log('Service deleted:', serviceName);
+      setServices(prevServices => prevServices.filter(service => service.name !== serviceName));
+
+      console.log('Service and associated categories deleted:', serviceName);
     } catch (error) {
       console.error('Error deleting service:', error);
     }
@@ -80,6 +89,7 @@ function ServiceComponent() {
 }
 
 export default ServiceComponent;
+
 
 
 
