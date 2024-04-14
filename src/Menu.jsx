@@ -198,12 +198,7 @@ export default class Menu extends Component {
                                                 <p>surrprimer</p>
                                             </a>
                                         </li>
-                                        <li className="nav-item">
-                                            <a href="surrprimerservice" className="nav-link">
-                                                <i className="far fa-circle nav-icon"></i>
-                                                <p>surrprimerservvice</p>
-                                            </a>
-                                        </li>
+                                       
                                         
                                         
                                     </ul>

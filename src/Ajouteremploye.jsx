@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Chef = () => {
+function AddEmployee() {
   const [formData, setFormData] = useState({
     nom: '',
     prénom: '',
     email: '',
     password: '',
     numtel: '',
-    spécialité: ''
+    serviceId: ''
   });
+  const [services, setServices] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:7000/service');
+      setServices(response.data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des services:', error);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,52 +34,71 @@ const Chef = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:7000/employe/add', formData);
-      console.log('Employee added:', response.data);
+      console.log('Employé ajouté:', response.data);
       setFormData({
         nom: '',
         prénom: '',
         email: '',
         password: '',
         numtel: '',
-        spécialité: ''
+        serviceId: ''
       });
+      setError(null); // Effacer toute erreur précédente
     } catch (error) {
-      console.error('Error adding employee:', error);
+      console.error('Erreur lors de l\'ajout de l\'employé:', error);
+      if (error.response && error.response.status === 400) {
+        setError("Employé existe déjà"); // Définir le message d'erreur à afficher
+      } else {
+        setError('Une erreur s\'est produite lors de l\'ajout de l\'employé.'); // Message d'erreur par défaut
+      }
     }
   };
 
   return (
     <div className="container">
-      <h2>Ajouter Employee</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Nom:</label>
-          <input type="text" name="nom" value={formData.nom} onChange={handleChange} className="form-control" />
+      <div className="row">
+        <div className="col-md-12">
+          <h2>Ajouter Employé</h2>
+          <form onSubmit={handleSubmit}>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <div className="form-group">
+              <label>Nom :</label>
+              <input type="text" name="nom" value={formData.nom} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Prénom :</label>
+              <input type="text" name="prénom" value={formData.prénom} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Email :</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Mot de passe :</label>
+              <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Numéro de téléphone :</label>
+              <input type="text" name="numtel" value={formData.numtel} onChange={handleChange} className="form-control" />
+            </div>
+            <div className="form-group">
+              <label>Service :</label>
+              <select name="serviceId" value={formData.serviceId} onChange={handleChange} className="form-control">
+                <option value="">Sélectionnez un service</option>
+                {services.map(service => (
+                  <option key={service._id} value={service._id}>{service.name}</option>
+                ))}
+              </select>
+            </div>
+            <button type="submit" className="btn btn-primary">Ajouter Employé</button>
+          </form>
         </div>
-        <div className="form-group">
-          <label>Prénom:</label>
-          <input type="text" name="prénom" value={formData.prénom} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="form-group">
-          <label>Num Tel:</label>
-          <input type="text" name="numtel" value={formData.numtel} onChange={handleChange} className="form-control" />
-        </div>
-        <div className="form-group">
-          <label>Spécialité:</label>
-          <input type="text" name="spécialité" value={formData.spécialité} onChange={handleChange} className="form-control" />
-        </div>
-        <button type="submit" className="btn btn-primary">Add Employee</button>
-      </form>
+      </div>
     </div>
   );
-};
+}
 
-export default Chef;
+export default AddEmployee;
+
+
+

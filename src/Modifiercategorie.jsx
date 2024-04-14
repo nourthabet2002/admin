@@ -4,7 +4,7 @@ import axios from 'axios';
 const ModifierCategorie = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [updatedFields, setUpdatedFields] = useState({});
+  const [updatedName, setUpdatedName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   // Fetch categories from the backend when the component mounts
@@ -25,13 +25,13 @@ const ModifierCategorie = () => {
   // Function to handle choosing a category
   const handleChoose = (category) => {
     setSelectedCategory(category);
-    setUpdatedFields({ ...category });
+    setUpdatedName(category.name);
   };
 
   // Function to handle updating the selected category
   const handleUpdate = async () => {
     try {
-      const response = await axios.put(`http://localhost:7000/categorie/${selectedCategory.name}`, updatedFields);
+      const response = await axios.put(`http://localhost:7000/categorie/${selectedCategory.name}`, { name: updatedName });
       setCategories(categories.map(cat => cat.name === selectedCategory.name ? response.data.updatedcategorie : cat));
       setErrorMessage('');
       console.log("Updated category:", response.data.updatedcategorie); // Log updated category
@@ -40,13 +40,10 @@ const ModifierCategorie = () => {
     }
   };
 
-  // Function to handle input change for updating fields
-  const handleFieldChange = (e) => {
-    const { name, value } = e.target;
-    setUpdatedFields(prevFields => ({
-      ...prevFields,
-      [name]: value
-    }));
+  // Function to handle input change for updating name
+  const handleNameChange = (e) => {
+    const { value } = e.target;
+    setUpdatedName(value);
   };
 
   return (
@@ -57,7 +54,6 @@ const ModifierCategorie = () => {
         <thead>
           <tr>
             <th className="table-header">Name</th>
-            <th className="table-header">Service ID</th>
             <th className="table-header">Actions</th>
           </tr>
         </thead>
@@ -65,7 +61,6 @@ const ModifierCategorie = () => {
           {categories.map(category => (
             <tr key={category._id}>
               <td className="table-data">{category.name}</td>
-              <td className="table-data">{category.serviceId}</td>
               <td className="table-data">
                 <button onClick={() => handleChoose(category)} className="btn btn-primary">Choose</button>
               </td>
@@ -82,19 +77,8 @@ const ModifierCategorie = () => {
               type="text"
               id="name"
               name="name"
-              value={updatedFields.name || ''}
-              onChange={handleFieldChange}
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="serviceId" className="form-label">Service ID:</label>
-            <input
-              type="text"
-              id="serviceId"
-              name="serviceId"
-              value={updatedFields.serviceId || ''}
-              onChange={handleFieldChange}
+              value={updatedName}
+              onChange={handleNameChange}
               className="form-control"
             />
           </div>
@@ -106,6 +90,7 @@ const ModifierCategorie = () => {
 };
 
 export default ModifierCategorie;
+
 
 
 

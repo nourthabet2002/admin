@@ -32,47 +32,49 @@ function ClientComponent() {
     }
   };
 
-  if (loading) {
-    return <div>Chargement en cours...</div>;
-  }
-
-  if (error) {
-    return <div>Erreur : {error.message}</div>;
-  }
-
   return (
-    <div>
-      <h1>Liste des clients</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>password</th>
-            <th>numtel</th>
-            <th>adresse</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clients.map(client => (
-            <tr key={client._id}>
-              <td>{client._id}</td>
-              <td>{client.nom}</td>
-              <td>{client.email}</td>
-              <td>{client.password}</td>
-              <td>{client.numtel}</td>
-              <td>{client.adresse}</td>
-              <td>
-                <button onClick={() => handleDelete(client.nom)}>Supprimer</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container">
+      {loading ? (
+        <div>Chargement en cours...</div>
+      ) : error ? (
+        <div>Erreur : {error.message}</div>
+      ) : (
+        <>
+          <h1 className="title">Liste des clients</h1>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Numéro de téléphone</th>
+                <th>Adresse</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clients.map(client => (
+                <tr key={client._id}>
+                  <td>{client._id}</td>
+                  <td>{client.nom}</td>
+                  <td>{client.email}</td>
+                  <td>{client.password}</td>
+                  <td>{client.numtel}</td>
+                  <td>{client.adresse}</td>
+                  <td>
+                    <button onClick={() => handleDelete(client.nom)} className="btn btn-danger">Supprimer</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 }
 
 export default ClientComponent;
+
+

@@ -20,38 +20,38 @@ function GetReservations() {
   };
 
   return (
-    <div>
-      <h2>Reservations</h2>
-      <button onClick={handleReservationClick} disabled={loading}>
+    <div className="container">
+      <h2 className="reservations-title">Reservations</h2>
+      <button className="btn btn-primary" onClick={handleReservationClick} disabled={loading}>
         {loading ? 'Loading...' : 'Get Reservations'}
       </button>
-      {error && <p>Error: {error.message}</p>}
-      <table>
+      {error && <p className="error">Error: {error.message}</p>}
+      <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Service Name</th>
-            <th>Subcategory</th>
-            <th>Date</th>
-            <th>descripition</th>
-            <th>lieu</th>
-            <th>Prix</th>
-            <th>etat</th>
-            <th>chefchantier</th>
+            <th className="reservation-id">ID</th>
+            <th className="service-name">Service Name</th>
+            <th className="subcategory">Subcategory</th>
+            <th className="date">Date</th>
+            <th className="description">Description</th>
+            <th className="place">Place</th>
+            <th className="price">Prix</th>
+            <th className="status">Etat</th>
+            <th className="foreman">Chef de Chantier</th>
           </tr>
         </thead>
         <tbody>
           {reservations.map((projet) => (
             <tr key={projet.ID}>
-              <td>{projet.ID}</td>
-              <td>{projet.serviceName}</td>
-              <td>{projet.subCategory}</td>
-              <td>{projet.date}</td>
-              <td>{projet.descripition}</td>
-              <td>{projet.lieu}</td>
-              <td>{projet.prix}</td>
-              <td>{projet.etat}</td>
-              <td>{projet.chefchantier}</td>
+              <td className="reservation-id">{projet.ID}</td>
+              <td className="service-name">{projet.serviceName}</td>
+              <td className="subcategory">{projet.subCategory}</td>
+              <td className="date">{projet.date}</td>
+              <td className="description">{projet.descripition}</td>
+              <td className="place">{projet.lieu}</td>
+              <td className="price">{projet.prix}</td>
+              <td className="status">{projet.etat}</td>
+              <td className="foreman">{projet.chefchantier}</td>
             </tr>
           ))}
         </tbody>
@@ -61,5 +61,6 @@ function GetReservations() {
 }
 
 export default GetReservations;
+
 
 

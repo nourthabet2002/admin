@@ -23,36 +23,44 @@ function ClientComponent() {
   }, []);
 
   if (loading) {
-    return <div>Chargement en cours...</div>;
+    return (
+      <div className="container">
+        <div className="loading">Chargement en cours...</div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Erreur : {error.message}</div>;
+    return (
+      <div className="container">
+        <div className="error">Erreur : {error.message}</div>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Liste des clients</h1>
-      <table>
+    <div className="container">
+      <h1 className="client-title">Liste des clients</h1>
+      <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nom</th>
-            <th>Email</th>
-            <th>password</th>
-            <th>numtel</th>
-            <th>spécialité</th>
+            
+            <th className="client-nom">Nom</th>
+            <th className="client-email">Email</th>
+            <th className="client-password">password</th>
+            <th className="client-numtel">numtel</th>
+            <th className="client-specialite">adresse</th>
           </tr>
         </thead>
         <tbody>
           {clients.map(client => (
             <tr key={client._id}>
-              <td>{client._id}</td>
-              <td>{client.name}</td>
-              <td>{client.email}</td>
-              <td>{client.password}</td>
-              <td>{client.numtel}</td>
-              <td>{client.adresse}</td>
+             
+              <td className="client-name">{client.nom}</td>
+              <td className="client-email">{client.email}</td>
+              <td className="client-password">{client.password}</td>
+              <td className="client-numtel">{client.numtel}</td>
+              <td className="client-specialite">{client.adresse}</td>
             </tr>
           ))}
         </tbody>
@@ -62,3 +70,5 @@ function ClientComponent() {
 }
 
 export default ClientComponent;
+
+

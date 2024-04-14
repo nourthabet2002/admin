@@ -57,6 +57,10 @@ function UpdateChef() {
             <thead>
               <tr>
                 <th>Chef Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Numtel</th>
+                <th>Service ID</th>
                 <th>Select</th>
               </tr>
             </thead>
@@ -64,6 +68,10 @@ function UpdateChef() {
               {chefs.map(chef => (
                 <tr key={chef.nom}>
                   <td>{chef.nom}</td>
+                  <td>{chef.email}</td>
+                  <td>{chef.password}</td>
+                  <td>{chef.numtel}</td>
+                  <td>{chef.serviceId}</td>
                   <td>
                     <button onClick={() => handleSelectChef(chef.nom)} className="btn btn-primary">Select</button>
                   </td>
@@ -108,6 +116,7 @@ function UpdateChef() {
 }
 
 export default UpdateChef;
+
 
 
 

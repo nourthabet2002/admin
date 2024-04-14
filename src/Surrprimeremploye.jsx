@@ -39,7 +39,7 @@ function DeleteEmployee() {
             <th>Email</th>
             <th>Password</th>
             <th>Numéro de téléphone</th>
-            <th>Spécialité</th>
+            
             <th>Action</th>
           </tr>
         </thead>
@@ -52,7 +52,7 @@ function DeleteEmployee() {
               <td>{employee.email}</td>
               <td>{employee.password}</td>
               <td>{employee.numtel}</td>
-              <td>{employee.spécialité}</td>
+             
               <td>
                 <button onClick={() => handleDelete(employee.nom)} className="btn btn-danger">Delete</button>
               </td>

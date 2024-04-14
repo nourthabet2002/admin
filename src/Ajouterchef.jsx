@@ -11,6 +11,7 @@ function AddChef() {
     serviceId: ''
   });
   const [services, setServices] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchServices();
@@ -42,8 +43,14 @@ function AddChef() {
         numtel: '',
         serviceId: ''
       });
+      setError(null); // Clear any previous error
     } catch (error) {
       console.error('Error adding chef:', error);
+      if (error.response && error.response.status === 400) {
+        setError("Chef existe déjà"); // Set error message to display
+      } else {
+        setError('An error occurred while adding the chef.'); // Default error message
+      }
     }
   };
 
@@ -53,6 +60,7 @@ function AddChef() {
         <div className="col-md-12">
           <h2>Ajouter Chef</h2>
           <form onSubmit={handleSubmit}>
+            {error && <div className="alert alert-danger">{error}</div>}
             <div className="form-group">
               <label>Nom:</label>
               <input type="text" name="nom" value={formData.nom} onChange={handleChange} className="form-control" />
@@ -91,5 +99,6 @@ function AddChef() {
 }
 
 export default AddChef;
+
 
 

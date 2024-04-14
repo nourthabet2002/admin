@@ -21,7 +21,7 @@ function Modifier() {
   };
 
   const handleSelectEmployee = (employeeName) => {
-    const employee = employees.find(employee => employee.nom === employeeName);
+    const employee = employees.find((employee) => employee.nom === employeeName);
     setSelectedEmployeeData(employee);
     setSelectedEmployee(employeeName);
   };
@@ -32,7 +32,10 @@ function Modifier() {
       return;
     }
     try {
-      const response = await axios.put(`http://localhost:7000/employee/${selectedEmployeeData.nom}`, updatedEmployeeData);
+      const response = await axios.put(
+        `http://localhost:7000/employee/${selectedEmployeeData.nom}`,
+        updatedEmployeeData
+      );
       console.log('Employee updated:', response.data);
       fetchEmployees(); // Refresh the list after update
       setSelectedEmployee(''); // Reset selected employee
@@ -55,15 +58,27 @@ function Modifier() {
         <thead>
           <tr>
             <th>Employee Name</th>
+            <th>Employee Prénom</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Numtel</th>
+            <th>Service ID</th>
             <th>Select</th>
           </tr>
         </thead>
         <tbody>
-          {employees.map(employee => (
+          {employees.map((employee) => (
             <tr key={employee.nom}>
               <td>{employee.nom}</td>
+              <td>{employee.prénom}</td>
+              <td>{employee.email}</td>
+              <td>{employee.password}</td>
+              <td>{employee.numtel}</td>
+              <td>{employee.serviceId}</td>
               <td>
-                <button onClick={() => handleSelectEmployee(employee.nom)} className="btn btn-primary">Select</button>
+                <button onClick={() => handleSelectEmployee(employee.nom)} className="btn btn-primary">
+                  Select
+                </button>
               </td>
             </tr>
           ))}
@@ -96,7 +111,9 @@ function Modifier() {
               ))}
             </tbody>
           </table>
-          <button onClick={handleUpdate} className="btn btn-success">Update Employee</button>
+          <button onClick={handleUpdate} className="btn btn-success">
+            Update Employee
+          </button>
         </div>
       )}
     </div>
@@ -104,3 +121,4 @@ function Modifier() {
 }
 
 export default Modifier;
+

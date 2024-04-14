@@ -5,6 +5,7 @@ function Modifierservice() {
   const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [updatedName, setUpdatedName] = useState('');
+  const [updatedDescription, setUpdatedDescription] = useState('');
 
   useEffect(() => {
     fetchServices();
@@ -22,15 +23,23 @@ function Modifierservice() {
   const handleSelectService = (service) => {
     setSelectedService(service);
     setUpdatedName(service.name);
+    setUpdatedDescription(service.description);
   };
 
   const handleNameChange = (e) => {
     setUpdatedName(e.target.value);
   };
 
+  const handleDescriptionChange = (e) => {
+    setUpdatedDescription(e.target.value);
+  };
+
   const handleUpdateService = async () => {
     try {
-      await axios.put(`http://localhost:7000/service/${selectedService._id}`, { name: updatedName });
+      await axios.put(`http://localhost:7000/service/${selectedService._id}`, {
+        name: updatedName,
+        description: updatedDescription
+      });
       console.log('Service updated successfully');
       // Optionally, you can show a success message or update the service list here
       // Refresh the service list after updating
@@ -70,6 +79,8 @@ function Modifierservice() {
           <p>Description: {selectedService.description}</p>
           {/* Editable name field */}
           <input type="text" value={updatedName} onChange={handleNameChange} className="form-control" />
+          {/* Editable description field */}
+          <input type="text" value={updatedDescription} onChange={handleDescriptionChange} className="form-control" />
           <button onClick={handleUpdateService} className="btn btn-success">Update Service</button>
         </div>
       )}
@@ -78,5 +89,6 @@ function Modifierservice() {
 }
 
 export default Modifierservice;
+
 
 
