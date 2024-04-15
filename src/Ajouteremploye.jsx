@@ -43,13 +43,13 @@ function AddEmployee() {
         numtel: '',
         serviceId: ''
       });
-      setError(null); // Effacer toute erreur précédente
+      setError(null); // Clear any previous errors
     } catch (error) {
-      console.error('Erreur lors de l\'ajout de l\'employé:', error);
+      console.error('Error adding employee:', error);
       if (error.response && error.response.status === 400) {
-        setError("Employé existe déjà"); // Définir le message d'erreur à afficher
+        setError(error.response.data.error); // Set the error message to display
       } else {
-        setError('Une erreur s\'est produite lors de l\'ajout de l\'employé.'); // Message d'erreur par défaut
+        setError('An error occurred while adding the employee.'); // Default error message
       }
     }
   };
@@ -99,6 +99,7 @@ function AddEmployee() {
 }
 
 export default AddEmployee;
+
 
 
 

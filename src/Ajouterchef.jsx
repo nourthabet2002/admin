@@ -32,6 +32,11 @@ function AddChef() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.numtel.length !== 8) {
+      setError("Le numéro de téléphone doit être composé de 8 chiffres.");
+      return; // Exit the function early if the phone number length is not 8
+    }
+
     try {
       const response = await axios.post('http://localhost:7000/add', formData);
       console.log('Chef added:', response.data);
@@ -99,6 +104,7 @@ function AddChef() {
 }
 
 export default AddChef;
+
 
 
 
