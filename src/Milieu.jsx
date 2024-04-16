@@ -17,6 +17,8 @@ import Modifierservice from './Modifierservice';
 import Ajouteremploye from './Ajouteremploye';
 import Modifier from './Modifier';
 import Surrprimeremploye from './Surrprimeremploye';
+import Consulterchef from './Consulterchef';
+import Consulteremploye from './Consulteremploye';
 export default class Body extends Component {
   render() {
     return (
@@ -144,6 +146,8 @@ export default class Body extends Component {
                         <Route path="/ajouteremploye" element={<Ajouteremploye />} />
                         <Route path="/modifieremploye" element={<Modifier />} />
                         <Route path="/surrprimeremploye" element={<Surrprimeremploye />} />
+                        <Route path="/consulterchef" element={<Consulterchef />} />
+                        <Route path="/consulteremploye" element={<Consulteremploye />} />
                         </Routes>
                  </Router>
                   <div className="chart tab-pane active" id="revenue-chart" style={{position: 'relative', height: 300}}>

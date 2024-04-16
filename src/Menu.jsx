@@ -72,9 +72,9 @@ export default class Menu extends Component {
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a href="affecterchef" className="nav-link">
+                                            <a href="consulterchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>affecterchef</p>
+                                                <p>consulterrchef</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -138,6 +138,12 @@ export default class Menu extends Component {
                                             <a href="modifieremploye" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>modifieremploye</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="consulteremploye" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>consulteremploye</p>
                                             </a>
                                         </li>
                                         
