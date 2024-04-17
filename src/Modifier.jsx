@@ -6,9 +6,11 @@ function Modifier() {
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [updatedEmployeeData, setUpdatedEmployeeData] = useState({});
   const [selectedEmployeeData, setSelectedEmployeeData] = useState(null);
+  const [services, setServices] = useState({});
 
   useEffect(() => {
     fetchEmployees();
+    fetchServices(); // Fetch services data
   }, []);
 
   const fetchEmployees = async () => {
@@ -20,9 +22,24 @@ function Modifier() {
     }
   };
 
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:7000/service');
+      const servicesData = {};
+      response.data.forEach((service) => {
+        servicesData[service._id] = service.name;
+      });
+      setServices(servicesData);
+    } catch (error) {
+      console.error('Error fetching services:', error);
+    }
+  };
+
   const handleSelectEmployee = (employeeName) => {
     const employee = employees.find((employee) => employee.nom === employeeName);
-    setSelectedEmployeeData(employee);
+    const serviceName = services[employee.serviceId]; // Get service name using service ID
+    const employeeWithServiceName = { ...employee, service: serviceName }; // Add service name to the employee object
+    setSelectedEmployeeData(employeeWithServiceName);
     setSelectedEmployee(employeeName);
   };
 
@@ -62,7 +79,7 @@ function Modifier() {
             <th>Email</th>
             <th>Password</th>
             <th>Numtel</th>
-            <th>Service ID</th>
+            <th>Service</th> {/* Change heading from Service ID to Service */}
             <th>Select</th>
           </tr>
         </thead>
@@ -74,7 +91,7 @@ function Modifier() {
               <td>{employee.email}</td>
               <td>{employee.password}</td>
               <td>{employee.numtel}</td>
-              <td>{employee.serviceId}</td>
+              <td>{services[employee.serviceId]}</td> {/* Display service name */}
               <td>
                 <button onClick={() => handleSelectEmployee(employee.nom)} className="btn btn-primary">
                   Select
@@ -99,13 +116,17 @@ function Modifier() {
                 <tr key={field}>
                   <td>{field}</td>
                   <td>
-                    <input
-                      type="text"
-                      name={field}
-                      value={updatedEmployeeData[field] || value}
-                      onChange={handleInputChange}
-                      className="form-control"
-                    />
+                    {field === 'nom' || field === 'prénom' ? (
+                      <span>{value}</span> // Display as plain text
+                    ) : (
+                      <input
+                        type="text"
+                        name={field}
+                        value={updatedEmployeeData[field] || value}
+                        onChange={handleInputChange}
+                        className="form-control"
+                      />
+                    )}
                   </td>
                 </tr>
               ))}
@@ -121,4 +142,8 @@ function Modifier() {
 }
 
 export default Modifier;
+
+
+
+
 
