@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Ajouterchef from './Ajouterchef';
-import Surrprimerchef from './Surrprimerchef';
-import Modifierchef from './Modifierchef';
-import Addscategorie from './Addcategorie';
-import Reservation from './Reservation';
-import Accepter from './Accepter';
-import Surrprimerservice from './Surrprimerservice';
-import Consulterclient from './Consulterclient';
-import Surrprimerclient from './Surrprimerclient';
-import AddcategorieForm from './Addcategorie';
-import AddServiceForm from './Addservice';
-import Surrprimercategorie from'./Surrprimercategorie';
-import ModifierCategorie from './Modifiercategorie';
-import Modifierservice from './Modifierservice';
-import Ajouteremploye from './Ajouteremploye';
-import Modifier from './Modifier';
-import Surrprimeremploye from './Surrprimeremploye';
-import Consulterchef from './Consulterchef';
-import Consulteremploye from './Consulteremploye';
+// import Ajouterchef from './Ajouterchef';
+// import Surrprimerchef from './Surrprimerchef';
+// import Modifierchef from './Modifierchef';
+// import Addscategorie from './Addcategorie';
+// import Reservation from './Reservation';
+// import Accepter from './Accepter';
+// import Surrprimerservice from './Surrprimerservice';
+// import Consulterclient from './Consulterclient';
+// import Surrprimerclient from './Surrprimerclient';
+// import AddcategorieForm from './Addcategorie';
+// import AddServiceForm from './Addservice';
+// import Surrprimercategorie from'./Surrprimercategorie';
+// import ModifierCategorie from './Modifiercategorie';
+// import Modifierservice from './Modifierservice';
+// import Ajouteremploye from './Ajouteremploye';
+// import Modifier from './Modifier';
+// import Surrprimeremploye from './Surrprimeremploye';
+// import Consulterchef from './Consulterchef';
+// import Consulteremploye from './Consulteremploye';
 export default class Body extends Component {
   render() {
     return (
@@ -128,7 +128,7 @@ export default class Body extends Component {
               <div className="card-body">
                 <div className="tab-content p-0">
                   {/* Morris chart - Sales */}
-                  <Router>
+                  {/* <Router>
                   <Routes>
                         <Route path="/ajouterchef" element={<Ajouterchef />} />
                         <Route path="/surrprimerchef" element={<Surrprimerchef />} />
@@ -149,7 +149,7 @@ export default class Body extends Component {
                         <Route path="/consulterchef" element={<Consulterchef />} />
                         <Route path="/consulteremploye" element={<Consulteremploye />} />
                         </Routes>
-                 </Router>
+                 </Router> */}
                   <div className="chart tab-pane active" id="revenue-chart" style={{position: 'relative', height: 300}}>
                     <canvas id="revenue-chart-canvas" height={300} style={{height: 300}} />
                   </div>

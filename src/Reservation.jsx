@@ -33,9 +33,9 @@ function GetReservations() {
             <th className="service-name">Service Name</th>
             <th className="subcategory">Subcategory</th>
             <th className="date">Date</th>
-            <th className="description">Description</th>
+            <th className="datedebut">datedebut</th>
             <th className="place">Place</th>
-            <th className="price">Prix</th>
+            <th className="duree">duree</th>
             <th className="status">Etat</th>
             <th className="foreman">Chef de Chantier</th>
           </tr>
@@ -44,12 +44,12 @@ function GetReservations() {
           {reservations.map((projet) => (
             <tr key={projet.ID}>
               <td className="reservation-id">{projet.ID}</td>
-              <td className="service-name">{projet.serviceName}</td>
+              <td className="service-name">{projet.servicename}</td>
               <td className="subcategory">{projet.subCategory}</td>
               <td className="date">{projet.date}</td>
-              <td className="description">{projet.descripition}</td>
+              <td className="datedebut">{projet.datedebut}</td>
               <td className="place">{projet.lieu}</td>
-              <td className="price">{projet.prix}</td>
+              <td className="duree">{projet.duree}</td>
               <td className="status">{projet.etat}</td>
               <td className="foreman">{projet.chefchantier}</td>
             </tr>
@@ -61,6 +61,7 @@ function GetReservations() {
 }
 
 export default GetReservations;
+
 
 
 

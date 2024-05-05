@@ -3,13 +3,14 @@ import axios from 'axios';
 
 const Accepter = () => {
   const [reservations, setReservations] = useState([]);
-  const [price, setPrice] = useState('');
   const [etat, setEtat] = useState('');
   const [selectedChef, setSelectedChef] = useState('');
   const [selectedReservationId, setSelectedReservationId] = useState(null);
   const [chefs, setChefs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [clients, setClients] = useState([]);
+  const [datedebut, setDatedebut] = useState('');
+  const [duree, setDuree] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -57,6 +58,8 @@ const Accepter = () => {
   const handleAccept = (id) => {
     setSelectedReservationId(id);
     setEtat('');
+    setDatedebut('');
+    setDuree('');
     setSelectedChef('');
   };
 
@@ -69,14 +72,14 @@ const Accepter = () => {
       const response = await axios.post('http://localhost:7000/projet/add', {
         date,
         lieu,
-        prix: price,
+        datedebut,
+        duree,
         etat,
         chefchantier: selectedChef,
         categorie: selectedCategory.name, // Assuming the category name field is "name"
         client: selectedClient.name // Assuming the client name field is "name"
       });
       console.log('Project added:', response.data);
-      setPrice('');
       setEtat('');
       setSelectedChef('');
       setSelectedReservationId(null);
@@ -88,11 +91,26 @@ const Accepter = () => {
 
   const handleDeleteResclient = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:7000/resclient/${id}`);
-      console.log('Resclient deleted:', response.data);
-      setReservations(reservations.filter(reservation => reservation._id !== id));
+      const etatInput = prompt("Enter the state for deletion (e.g., refuse):");
+      if (etatInput) {
+        const response = await axios.put(`http://localhost:7000/resclient/${id}`, { etat: etatInput });
+        console.log('Reservation updated:', response.data);
+        // Call the resrefuse endpoint here
+        const selectedReservation = reservations.find(reservation => reservation._id === id);
+        const { date, lieu, categorieId, clientId } = selectedReservation;
+        const resrefuseResponse = await axios.post('http://localhost:7000/resrefuse/add', {
+          date,
+          lieu,
+          categorieId,
+          clientId,
+          etat: etatInput
+        });
+        console.log('Resrefuse added:', resrefuseResponse.data);
+        // End of resrefuse endpoint call
+        setReservations(reservations.filter(reservation => reservation._id !== id));
+      }
     } catch (error) {
-      console.error('Error deleting resclient:', error);
+      console.error('Error updating reservation:', error);
     }
   };
 
@@ -130,8 +148,12 @@ const Accepter = () => {
         <div>
           <h2 className="add-project-title">Add Project</h2>
           <div className="form-group">
-            <label>Prix:</label>
-            <input type="text" value={price} onChange={e => setPrice(e.target.value)} className="form-control" />
+            <label>Date Debut:</label>
+            <input type="text" value={datedebut} onChange={e => setDatedebut(e.target.value)} className="form-control" />
+          </div>
+          <div className="form-group">
+            <label>Duree:</label>
+            <input type="text" value={duree} onChange={e => setDuree(e.target.value)} className="form-control" />
           </div>
           <div className="form-group">
             <label>Etat:</label>
@@ -154,6 +176,19 @@ const Accepter = () => {
 };
 
 export default Accepter;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

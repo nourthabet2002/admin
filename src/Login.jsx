@@ -27,19 +27,23 @@ function Login() {
     }
 
     return (
-        <div className="login">
-            <h1>Login</h1>
-            <form onSubmit={submit}>
-                <input type="username" value={username} onChange={(e) => setusername(e.target.value)} placeholder="username" />
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                <input type="submit" value="Login" />
-            </form>
-            <br />
-            
-            <br />
-            
+        <div className="container">
+        <div className="row">
+            <div className="col-md-12">
+                <h1>Login</h1>
+                <form onSubmit={submit}>
+                    <div className="form-group">
+                        <input type="username" value={username} onChange={(e) => setusername(e.target.value)} placeholder="username" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="form-control" />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Login</button>
+                </form>
+            </div>
         </div>
-    );
+    </div>
+);
 }
 
 export default Login;
@@ -154,3 +158,19 @@ export default Login;
 // export default Login;
 
 
+
+
+// <div className="login">
+// <h1>Login</h1>
+// <form onSubmit={submit}>
+//     <input type="username" value={username} onChange={(e) => setusername(e.target.value)} placeholder="username" />
+//     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+//     <input type="submit" value="Login" />
+// </form>
+// <br />
+
+// <br />
+
+// </div>
+// );
+// }
