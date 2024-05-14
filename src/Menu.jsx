@@ -12,7 +12,7 @@ export default class Menu extends Component {
                     {/* Brand Logo */}
                     <a href="index3.html" className="brand-link">
                         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{ opacity: .8 }} />
-                        <span className="brand-text font-weight-light">AdminLTE 3</span>
+                        <span className="brand-text font-weight-light">Administrateur</span>
                     </a>
 
                     {/* Sidebar */}
@@ -23,7 +23,7 @@ export default class Menu extends Component {
                                 <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
                             </div>
                             <div className="info">
-                                <a href="#" className="d-block">Alexander Pierce</a>
+                                <a href="#" className="d-block">Admin</a>
                             </div>
                         </div>
 
@@ -56,25 +56,25 @@ export default class Menu extends Component {
                                         <li className="nav-item">
                                             <a href="ajouterchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>ajouterchef</p>
+                                                <p>ajouter chef</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="surrprimerchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>surrprimerchef</p>
+                                                <p>surrprimer chef</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="modifierchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>modifierchef</p>
+                                                <p>modifier chef</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="consulterchef" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>consulterrchef</p>
+                                                <p>consulter chef</p>
                                             </a>
                                         </li>
                                     </ul>
@@ -92,19 +92,25 @@ export default class Menu extends Component {
                                         <li className="nav-item">
                                             <a href="ajouterservice" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>ajouterservvice</p>
+                                                <p>ajouter service</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="surrprimerservice" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>surrprimerservvice</p>
+                                                <p>surrprimer service</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="modifierservice" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>modifierservvice</p>
+                                                <p>modifier service</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="consulter service" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>consulter service</p>
                                             </a>
                                         </li>
                                         
@@ -125,25 +131,25 @@ export default class Menu extends Component {
                                         <li className="nav-item">
                                             <a href="ajouteremploye" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>ajouteremploye</p>
+                                                <p>ajouter employe</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="surrprimeremploye" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>surrprimeremploye</p>
+                                                <p>surrprimer employe</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="modifieremploye" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>modifieremploye</p>
+                                                <p>modifier employe</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="consulteremploye" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>consulteremploye</p>
+                                                <p>consulter employe</p>
                                             </a>
                                         </li>
                                         
@@ -163,19 +169,25 @@ export default class Menu extends Component {
                                         <li className="nav-item">
                                             <a href="ajoutercategorie" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>ajoutercategorie</p>
+                                                <p>ajouter categorie</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="surrprimercategorie" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>surrpprimercategorie</p>
+                                                <p>surrpprimer categorie</p>
                                             </a>
                                         </li>
                                         <li className="nav-item">
                                             <a href="modifiercategorie" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
-                                                <p>modifiercategorie</p>
+                                                <p>modifier categorie</p>
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="consultercategorie" className="nav-link">
+                                                <i className="far fa-circle nav-icon"></i>
+                                                <p>consulter categorie</p>
                                             </a>
                                         </li>
                                         
@@ -187,17 +199,17 @@ export default class Menu extends Component {
                                     <a href="chefchantier" className="nav-link">
                                         <i className="nav-icon fas fa-tachometer-alt"></i>
                                         <p>
-                                            client
+                                          liste des  client
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
                                     <ul className="nav nav-treeview">
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <a href="consulterclient" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>
                                                 <p>consulter</p>
                                             </a>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <a href="surrprimerclient" className="nav-link">
                                                 <i className="far fa-circle nav-icon"></i>

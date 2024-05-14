@@ -19,8 +19,44 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Surrprimeremploye from './Surrprimeremploye';
 // import Consulterchef from './Consulterchef';
 // import Consulteremploye from './Consulteremploye';
+import axios from 'axios';
 export default class Body extends Component {
+  state = {
+    serviceCount: null
+  };
+  state = {
+    chefCount: null
+  };
+  state = {
+    resclientCount: null
+  };
+  state = {
+    employeeCount: null
+  };
+  async componentDidMount() {
+    try {
+      const serviceResponse = await axios.get('http://localhost:7000/services/count');
+      const chefResponse = await axios.get('http://localhost:7000/chefs/count');
+      const resclientResponse = await axios.get('http://localhost:7000/resclients/count');
+      const employeeResponse = await axios.get('http://localhost:7000/employees/count');
+      this.setState({ 
+        serviceCount: serviceResponse.data.count,
+        chefCount: chefResponse.data.count,
+        resclientCount: resclientResponse.data.count,
+        employeeCount: employeeResponse.data.count
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      this.setState({ 
+        serviceCount: -1,
+        chefCount: -1,
+        resclientCount: -1,
+        employeeCount: -1,
+      });
+    }
+  }
   render() {
+    const {serviceCount, chefCount, resclientCount,  employeeCount } = this.state;
     return (
         
       <div>{/* Content Wrapper. Contains page content */}
@@ -51,8 +87,8 @@ export default class Body extends Component {
             {/* small box */}
             <div className="small-box bg-info">
               <div className="inner">
-                <h3>150</h3>
-                <p>employés</p>
+              <h3>{serviceCount !== null ? serviceCount : 'Loading...'}</h3>
+                <p>services</p>
               </div>
               <div className="icon">
                 <i className="ion ion-bag" />
@@ -65,11 +101,11 @@ export default class Body extends Component {
             {/* small box */}
             <div className="small-box bg-success">
               <div className="inner">
-                <h3>53<sup style={{fontSize: 20}}>%</sup></h3>
+              <h3>{ chefCount !== null ? chefCount : 'Loading...'}</h3>
                 <p>chef chantier</p>
               </div>
               <div className="icon">
-                <i className="ion ion-stats-bars" />
+                <i className="ion ion-person-add" />
               </div>
              
             </div>
@@ -79,8 +115,8 @@ export default class Body extends Component {
             {/* small box */}
             <div className="small-box bg-warning">
               <div className="inner">
-                <h3>44</h3>
-                <p>User Registrations</p>
+              <h3>{employeeCount !== null ? employeeCount : 'Loading...'}</h3>
+                <p>Employés</p>
               </div>
               <div className="icon">
                 <i className="ion ion-person-add" />
@@ -93,8 +129,8 @@ export default class Body extends Component {
             {/* small box */}
             <div className="small-box bg-danger">
               <div className="inner">
-                <h3>65</h3>
-                <p>Unique Visitors</p>
+              <h3>{ resclientCount !== null ? resclientCount : 'Loading...'}</h3>
+                <p>Réservations</p>
               </div>
               <div className="icon">
                 <i className="ion ion-pie-graph" />
@@ -113,14 +149,14 @@ export default class Body extends Component {
             <div className="card">
               <div className="card-header">
                 <h3 className="card-title">
-                  <i className="fas fa-chart-pie mr-1" />
+                  {/* <i className="fas fa-chart-pie mr-1" /> */}
                   
                 </h3>
                 <div className="card-tools">
                   <ul className="nav nav-pills ml-auto">
-                    <li className="nav-item">
-                      <a className="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                    </li>
+                    {/* <li className="nav-item">
+                      <a className="nav-link active" href="#revenue-chart" data-toggle="tab"></a>
+                    </li> */}
                     
                   </ul>
                 </div>

@@ -13,7 +13,7 @@ import Addscategorie from './Addcategorie';
 import Reservation from './Reservation';
 import Accepter from './Accepter';
 import Surrprimerservice from './Surrprimerservice';
-import Consulterclient from './Consulterclient';
+// import Consulterclient from './Consulterclient';
 import Surrprimerclient from './Surrprimerclient';
 import AddcategorieForm from './Addcategorie';
 import AddServiceForm from './Addservice';
@@ -25,8 +25,8 @@ import Modifier from './Modifier';
 import Surrprimeremploye from './Surrprimeremploye';
 import Consulterchef from './Consulterchef';
 import Consulteremploye from './Consulteremploye';
-
-
+import Consulterservice from "./Consulterservices";
+import Consultercategorie from "./Consultercategorie";
 function App() {
   return (
     <div className="wrapper">
@@ -43,7 +43,7 @@ function App() {
                         <Route path="/consulter" element={<Reservation />} />
                         <Route path="/gerer" element={<Accepter />} />
                         <Route path="/surrprimerservice" element={<Surrprimerservice />} />
-                        <Route path="/consulterclient" element={<Consulterclient/>} />
+                        <Route path="/consulter service" element={<Consulterservice/>} />
                         <Route path="/surrprimerclient" element={<Surrprimerclient/>} />
                         <Route path="/ajouterservice" element={<AddServiceForm />} />
                         <Route path="/surrprimercategorie" element={<Surrprimercategorie />} />
@@ -54,6 +54,8 @@ function App() {
                         <Route path="/surrprimeremploye" element={<Surrprimeremploye />} />
                         <Route path="/consulterchef" element={<Consulterchef />} />
                         <Route path="/consulteremploye" element={<Consulteremploye />} />
+                        <Route path="/consultercategorie" element={<Consultercategorie />} />
+                        
           </Routes>
         </div>
       </Router>

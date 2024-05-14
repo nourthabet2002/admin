@@ -3,39 +3,44 @@ import axios from "axios";
 
 function Consulterchef() {
   const [chefs, setChefs] = useState([]);
-  const [services, setServices] = useState({});
+  const [categories, setCategories] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchChefs = async () => {
       try {
-        const response = await axios.get("http://localhost:7000/chef");
-        setChefs(response.data);
-        // Fetch services once chefs are fetched
-        await fetchServices();
+        const chefsResponse = await axios.get("http://localhost:7000/chef");
+        const categoriesResponse = await axios.get("http://localhost:7000/categorie");
+
+        const chefsData = chefsResponse.data;
+        const categoriesData = {};
+        categoriesResponse.data.forEach((category) => {
+          categoriesData[category._id] = category.name;
+        });
+
+        setChefs(chefsData);
+        setCategories(categoriesData);
       } catch (error) {
-        console.error("Error fetching chefs:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchChefs();
   }, []);
 
-  const fetchServices = async () => {
-    try {
-      const response = await axios.get("http://localhost:7000/service");
-      const servicesData = {};
-      response.data.forEach((service) => {
-        servicesData[service._id] = service.name;
-      });
-      setServices(servicesData);
-    } catch (error) {
-      console.error("Error fetching services:", error);
-    }
-  };
+  const filteredChefs = chefs.filter(chef =>
+    chef.nom.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container">
       <h2>Chef List</h2>
+      <input
+        type="text"
+        placeholder="Search by name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <table className="table">
         <thead>
           <tr>
@@ -43,17 +48,17 @@ function Consulterchef() {
             <th>Prénom</th>
             <th>Email</th>
             <th>Numéro de téléphone</th>
-            <th>Service</th>
+            <th>Categorie</th>
           </tr>
         </thead>
         <tbody>
-          {chefs.map((chef) => (
+          {filteredChefs.map((chef) => (
             <tr key={chef._id}>
               <td>{chef.nom}</td>
               <td>{chef.prénom}</td>
               <td>{chef.email}</td>
               <td>{chef.numtel}</td>
-              <td>{services[chef.serviceId]}</td>
+              <td>{categories[chef.categorieId]}</td>
             </tr>
           ))}
         </tbody>
@@ -63,6 +68,7 @@ function Consulterchef() {
 }
 
 export default Consulterchef;
+
 
 
 

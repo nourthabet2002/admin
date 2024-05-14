@@ -21,7 +21,7 @@ function Login() {
                 alert("admin has not signed up");
             }
         } catch (e) {
-            alert("Wrong details");
+            alert("login ou mot de passe invalide!!!!");
             console.log(e);
         }
     }
@@ -30,7 +30,7 @@ function Login() {
         <div className="container">
         <div className="row">
             <div className="col-md-12">
-                <h1>Login</h1>
+                <h1>se connecter</h1>
                 <form onSubmit={submit}>
                     <div className="form-group">
                         <input type="username" value={username} onChange={(e) => setusername(e.target.value)} placeholder="username" className="form-control" />
