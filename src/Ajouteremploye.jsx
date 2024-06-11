@@ -101,7 +101,6 @@
 // export default AddEmployee;
 
 
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -112,19 +111,19 @@ function AddEmployee() {
     email: '',
     password: '',
     numtel: '',
-    categorieId: '' // Changed from serviceId to categorieId
+    categorieId: ''
   });
-  const [categories, setCategories] = useState([]); // State to store categories
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchCategories(); // Fetch categories when component mounts
+    fetchCategories();
   }, []);
 
   const fetchCategories = async () => {
     try {
       const response = await axios.get('http://localhost:7000/categorie');
-      setCategories(response.data); // Set categories in state
+      setCategories(response.data);
     } catch (error) {
       console.error('Erreur lors de la récupération des catégories:', error);
     }
@@ -137,13 +136,6 @@ function AddEmployee() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Check if employee with the selected category already exists
-      const existingEmployeeResponse = await axios.get(`http://localhost:7000/employe?categorieId=${formData.categorieId}`);
-      if (existingEmployeeResponse.data.length > 0) {
-        setError("Un employé existe déjà pour cette catégorie."); // Set error message
-        return;
-      }
-
       const response = await axios.post('http://localhost:7000/employe/add', formData);
       console.log('Employé ajouté:', response.data);
       setFormData({
@@ -154,13 +146,13 @@ function AddEmployee() {
         numtel: '',
         categorieId: ''
       });
-      setError(null); // Clear any previous errors
+      setError(null);
     } catch (error) {
       console.error('Error adding employee:', error);
       if (error.response && error.response.status === 400) {
-        setError(error.response.data.error); // Set error message to display
+        setError(error.response.data.error);
       } else {
-        setError('An error occurred while adding the employee.'); // Default error message
+        setError('An error occurred while adding the employee.');
       }
     }
   };
@@ -193,7 +185,7 @@ function AddEmployee() {
               <input type="text" name="numtel" value={formData.numtel} onChange={handleChange} className="form-control" />
             </div>
             <div className="form-group">
-              <label>Catégorie :</label> {/* Changed label to 'Catégorie' */}
+              <label>Catégorie :</label>
               <select name="categorieId" value={formData.categorieId} onChange={handleChange} className="form-control">
                 <option value="">Sélectionnez une catégorie</option>
                 {categories.map(categorie => (
@@ -210,4 +202,5 @@ function AddEmployee() {
 }
 
 export default AddEmployee;
+
 

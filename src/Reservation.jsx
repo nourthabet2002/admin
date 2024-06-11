@@ -31,10 +31,10 @@ function GetReservations() {
           <tr>
             <th className="reservation-id">ID</th>
             <th className="service-name">Service Name</th>
-            <th className="subcategory">Subcategory</th>
+            <th className="catégorie">catégorie</th>
             <th className="date">Date</th>
             <th className="datedebut">datedebut</th>
-            <th className="place">Place</th>
+            <th className="lieu">lieu</th>
             <th className="duree">duree</th>
             <th className="status">Etat</th>
             <th className="foreman">Chef de Chantier</th>
@@ -45,10 +45,10 @@ function GetReservations() {
             <tr key={projet.ID}>
               <td className="reservation-id">{projet.ID}</td>
               <td className="service-name">{projet.servicename}</td>
-              <td className="subcategory">{projet.subCategory}</td>
+              <td className="catégorie">{projet.categorieId}</td>
               <td className="date">{projet.date}</td>
               <td className="datedebut">{projet.datedebut}</td>
-              <td className="place">{projet.lieu}</td>
+              <td className="lieu">{projet.adresse}</td>
               <td className="duree">{projet.duree}</td>
               <td className="status">{projet.etat}</td>
               <td className="foreman">{projet.chefchantier}</td>
